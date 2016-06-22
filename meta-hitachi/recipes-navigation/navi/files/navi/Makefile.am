@@ -1,6 +1,0 @@
-AUTOMAKE_OPTIONS = foreign
-SUBDIRS = src
-DIST_SUBDIRS = src
-
-
-
