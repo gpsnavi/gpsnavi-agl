@@ -8,17 +8,8 @@ RDEPENDS_${PN} = "glib-2.0 freetype sqlite3 wayland zlib expat openssl libegl li
 SRCREV="v0.0.7"
 SRC_URI="git://github.com/gpsnavi/gpsnavi.git"
 
+SECURITY_CFLAGS = ""
+
 S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig
-
-do_libtool_fix () {
-	if [ "${TARGET_SYS}" = "arm-poky-linux-gnueabi" ]; then
-		BUILDDIR="${S}/../build"
-		LIBTOOL="${BUILDDIR}/arm-poky-linux-gnueabi-libtool"
-		sed -i 's/predep_objects=".*"/predep_objects=""/' $LIBTOOL
-		sed -i 's/postdep_objects=".*"/postdep_objects=""/' $LIBTOOL
-	fi
-}
-
-addtask libtool_fix before do_compile after do_configure
